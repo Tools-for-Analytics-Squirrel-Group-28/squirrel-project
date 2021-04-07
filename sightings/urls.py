@@ -4,5 +4,6 @@ app_name = 'sightings'
 
 urlpatterns=[
         path('',views.index),
-        path('<str:Unique_Squirrel_ID>/',views.update,name='update')
+        path('add/',views.add,name='add'),
+        path('<str:Unique_Squirrel_ID>/',views.update,name='update'),
 ]

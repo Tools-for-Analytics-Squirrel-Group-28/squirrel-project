@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Squirrel
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from .forms import SquirrelForm
 
 
@@ -14,8 +14,8 @@ def update(request,Unique_Squirrel_ID):
 
    if request.method == 'POST':
        form = SquirrelForm(request.POST, instance=squirrel_update)
-       if formset.is_valid():
-           formset.save()
+       if form.is_valid():
+           form.save()
            return redirect("/sightings/")
    else:
        form = SquirrelForm(instance = squirrel_update)
@@ -27,13 +27,13 @@ def update(request,Unique_Squirrel_ID):
 def add(request):
     if request.method == 'POST':
         form = SquirrelForm(request.POST)
-        if formset.is_valid():
-            formset.save()
+        if form.is_valid():
+            form.save()
             return redirect("/sightings/")
     else:
         form = SquirrelForm()
 
     context={'form':form,}
 
-    return render(request, 'add.html', context)
+    return render(request, 'sightings/add.html', context)
 # Create your views here.    
