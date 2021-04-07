@@ -1,5 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext as _
+from django.forms import ModelForm
+
 class Squirrel(models.Model):
     Latitude = models.FloatField(
             null=False,
