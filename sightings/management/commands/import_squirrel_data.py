@@ -12,8 +12,8 @@ class Command(BaseCommand):
         for i in range(len(data)):
             date = str(data.iloc[i]['Date'])
             _, created = Squirrel.objects.get_or_create(
-                Latitude = data.iloc[i]['X'],
-                Longitude= data.iloc[i]['Y'],
+                Latitude = data.iloc[i]['Y'],
+                Longitude= data.iloc[i]['X'],
                 Unique_Squirrel_ID = data.iloc[i]['Unique Squirrel ID'],
                 Shift = data.iloc[i]['Shift'],
                 Date = date[4:8]+'-'+ date[0:2]+'-'+ date[2:4],
