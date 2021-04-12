@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Squirrel Statistics</title>
+    </head>
+    
+    <body>
+        <div>
+            <table align='center' style="width:50%">
+                <tr>
+                        <th>Attributes</th>
+                        <th>Values</th>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>{{ total_count }}</td>
+                </tr>
+                <tr>
+                    <td>The rate of adult squirrels</td>
+                    <td>{{ adult_rate }}</td>
+                </tr>
+                <tr>
+                    <td>friendliness</td>
+                    <td>{{ friendliness }}</td>
+                </tr>
+                <tr>
+                    <td>Approaches prediction based on tail motions</td>
+                    <td>
+                        {{ predict_runs_from_acc }}
+                        {{ predict_approaches_acc }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>Vocal communication</td>
+                    <td>
+                        Kuks: {{ Kuks }}
+                        Quaas: {{ Quaas }} 
+                        Moans: {{ Moans }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </body>
+
+</html>
+
+
