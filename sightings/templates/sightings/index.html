@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Squirrel Tracker: all sightings</title>
+    <title>Squirrel Tracker: All Sightings</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,7 +21,6 @@
   <body>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Squirrel Tracker</a>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">:x
     </nav>
 
     <div class="container-fluid">
@@ -37,19 +36,19 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/sightings/add/">
-                  <span data-feather="file"></span>
+                  <span data-feather="plus-square"></span>
                   Add a Sighting
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/map/">
-                  <span data-feather="shopping-cart"></span>
+                  <span data-feather="map-pin"></span>
                   Map
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/sightings/stats">
-                  <span data-feather="users"></span>
+                  <span data-feather="bar-chart-2"></span>
                   Statistics
                 </a>
             </ul>
@@ -99,37 +98,6 @@
     <script>
       feather.replace()
     </script>
-
-    <!-- Graphs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
-    <script>
-      var ctx = document.getElementById("myChart");
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-          datasets: [{
-            data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
-            lineTension: 0,
-            backgroundColor: 'transparent',
-            borderColor: '#007bff',
-            borderWidth: 4,
-            pointBackgroundColor: '#007bff'
-          }]
-        },
-        options: {
-          scales: {
-            yAxes: [{
-              ticks: {
-                beginAtZero: false
-              }
-            }]
-          },
-          legend: {
-            display: false,
-          }
-        }
-      });
-    </script>
   </body>
 </html>
+
