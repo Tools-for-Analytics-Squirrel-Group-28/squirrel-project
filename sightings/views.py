@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import Squirrel
 from django.shortcuts import get_object_or_404, redirect
 from .forms import SquirrelForm
-
+from django.http import JsonResponse
 
 def home(request):
     return render(request, 'sightings/home.html', {})
@@ -39,10 +39,15 @@ def add(request):
     else:
         form = SquirrelForm()
 
-    context = {'form': form, }
+    context={'form':form,}
 
     return render(request, 'sightings/add.html', context)
 
+def mapping(request):
+    squirrels = Squirrel.objects.all()[0:100]
+    context = {'squirrels':squirrels,}
+    return render(request, 'sightings/mapping.html', context)
+# Create your views here.   
 
 def stats(request):
 
@@ -98,4 +103,3 @@ def stats(request):
     }
 
     return render(request, 'sightings/stats.html', context)
-

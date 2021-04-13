@@ -34,10 +34,14 @@ class Squirrel(models.Model):
     Shift = models.CharField(
         max_length=15,
         choices=SHIFT_CHOICES,
+        null=False,
+        blank=False
     )
 
     Date = models.DateField(
         help_text=_('date when the squirrel is found'),
+        null=False,
+        blank=False,
     )
 
     ADULT = 'Adult'
@@ -68,13 +72,15 @@ class Squirrel(models.Model):
         choices=LOCATION_CHOICES,
     )
 
-    Specific_Location = models.TextField(
+    Specific_Location = models.CharField(
+        max_length=200,
         blank=True,
+        null=True,
     )
 
     Running = models.BooleanField(
-        null=True,
-        blank=True
+        null=False,
+        blank=False
     )
 
     Chasing = models.BooleanField(
