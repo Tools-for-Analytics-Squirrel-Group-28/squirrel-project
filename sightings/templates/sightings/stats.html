@@ -1,48 +1,120 @@
 <!DOCTYPE html>
+
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Squirrel Statistics</title>
-    </head>
-    
-    <body>
-        <div>
-            <table align='center' style="width:50%">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+    <title>Squirrel Statistics</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../../dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Squirrel Tracker</a>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'sightings:index' %}">
+                    <span data-feather="index"></span>
+                    All Sightings
+                    <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'sightings:add' %}">
+                  <span data-feather="file"></span>
+                  Add a New Sighting
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="shopping-cart"></span>
+                  Map
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'sightings:stats' %}">
+                  <span data-feather="users"></span>
+                  Statistics
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+
+          <h1>Statistics Overview</h1>
+          <div class="table-responsive">
+            <table class="table table-striped table-sm">
                 <tr>
                         <th>Attributes</th>
                         <th>Values</th>
+                        <th>Description</th>
                 </tr>
                 <tr>
                     <td>Total</td>
                     <td>{{ total_count }}</td>
+                    <td>The total number of squirrels registered so far.</td>
                 </tr>
                 <tr>
-                    <td>The rate of adult squirrels</td>
+                    <td>Adult Rate</td>
                     <td>{{ adult_rate }}</td>
+                    <td>Percentage of adult squirrels spotted.</td>
                 </tr>
                 <tr>
-                    <td>friendliness</td>
+                    <td>Friendliness</td>
                     <td>{{ friendliness }}</td>
+                    <td>Percentage of squirrels that approaches human among all squirrels whose reaction to human was registered.</td>
                 </tr>
                 <tr>
-                    <td>Approaches prediction based on tail motions</td>
-                    <td>
-                        {{ predict_runs_from_acc }}
-                        {{ predict_approaches_acc }}
-                    </td>
+                    <td>Prediction Accuracy (Approaches)</td>
+                    <td>{{ predict_approaches_acc }}</td>
+                    <td>Prediction accuracy of squirrel behavior based on twitching tail motions.</td>
+                </tr>
+                <tr>
+                    <td>Prediction Accuracy (Runs From)</td>
+                    <td>{{ predict_runs_from_acc }}</td>
+                    <td>Prediction accuracy of squirrel behavior based on flagging tail motions.</td>
                 </tr>
                 <tr>
                     <td>Vocal communication</td>
                     <td>
-                        Kuks: {{ Kuks }}
-                        Quaas: {{ Quaas }} 
-                        Moans: {{ Moans }}
+                        Kuks: {{ Kuks }}<br>
+                        Quaas: {{ Quaas }}<br>
+                        Moans: {{ Moans }}<br>
                     </td>
+                    <td>Percentage of the sounds squirrels were heard uttering.</td>
                 </tr>
             </table>
-        </div>
-    </body>
 
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../../../dist/js/bootstrap.min.js"></script>
+  
+  </body>
 </html>
-
 
