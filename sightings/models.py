@@ -1,3 +1,4 @@
+from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import gettext as _
 from django.forms import ModelForm
@@ -16,17 +17,25 @@ class Squirrel(models.Model):
     )
 
     Unique_Squirrel_ID = models.CharField(
+        help_text=_('Format: <Hectare ID>-<AM/PM>-<4-digit Date>-<Hectare Squirrel Number>.'),
         max_length=200,
         unique=True,
         null=False,
-        blank=False
+        blank=False,
+        validators=[
+            RegexValidator(
+                regex=r'^\d{1,2}[A-Z]{1}-[A-Z]{2}-\d{4}-\d{2}$',
+                message='Please enter in the format of: <Hectare ID>-<AM/PM>-<4-digit Date>-<Hectare Squirrel Number>.',
+                code='invalid_ID'
+            ),
+        ]
     )
 
-    # Hectare = models.CharField(
-    #        max_length=200,
-    #       unique=True,
-    #      null=False,
-    # )
+    Hectare = models.CharField(
+        max_length=200,
+        unique=True,
+        null=False,
+    )
 
     PM = 'PM'
     AM = 'AM'
@@ -51,6 +60,8 @@ class Squirrel(models.Model):
         max_length=15,
         help_text=_('the age of the squirrel'),
         choices=AGE_CHOICES,
+        null=True,
+        blank=True
     )
 
     GRAY = 'Gray'
@@ -61,6 +72,8 @@ class Squirrel(models.Model):
         max_length=200,
         help_text=_('primary fur color'),
         choices=COLOR_CHOICES,
+        null=True,
+        blank=True
     )
 
     ABOVE_GROUND = 'Above Ground'
@@ -70,6 +83,8 @@ class Squirrel(models.Model):
         max_length=15,
         help_text=_('the Location of the squirrel'),
         choices=LOCATION_CHOICES,
+        null=True,
+        blank=True
     )
 
     Specific_Location = models.CharField(
@@ -79,8 +94,8 @@ class Squirrel(models.Model):
     )
 
     Running = models.BooleanField(
-        null=False,
-        blank=False
+        null=True,
+        blank=True
     )
 
     Chasing = models.BooleanField(
@@ -134,7 +149,7 @@ class Squirrel(models.Model):
         blank=True
     )
     Approaches = models.BooleanField(
-        help_text= _('Squirrel was seen approaching human.'),
+        help_text=_('Squirrel was seen approaching human.'),
         null=True,
         blank=True
     )
