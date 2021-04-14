@@ -1,0 +1,95 @@
+{% extends 'sightings/base.html' %}
+
+{% load static %}
+
+{% block title %} Statistics Overview {% endblock %}
+
+{% block body %}
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <img class="d-block mx-auto mb-4" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2699232169,2551735498&fm=26&gp=0.jpg" alt="" width="72" height="72">
+    <h1 class="display-4">Statistics Overview</h1>
+    <p class="lead">Below are the general statistics about the squirrel sightings.</p>
+    
+  </div>
+    <div class="container">
+      <div class="card-deck mb-3 text-center">
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Total</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ total_count }}</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>The total number of squirrels registered so far.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Adult Rate</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ adult_rate }}</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Percentage of adult squirrels among all squirrels whose age was registered.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Friendliness</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ friendliness }}</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Percentage of squirrels that approaches human among all squirrels whose reaction to human w
+as registered.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="card-deck mb-3 text-center">
+
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Approaches Prediction Accuracy</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ predict_approaches_acc }}</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Percentage of squirrels that approaches human among all squirrels seen twitching their tails.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Runs Away Prediction Accuracy</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">{{ predict_runs_from_acc }}</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Percentage of squirrels that runs away from human among all squirrels seen flagging their tails.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Vocal Communication (Kuks/Quaas/Moans)</h4>
+          </div>
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title"> {{ Kuks }} {{ Quaas }} {{ Moans }}</h1>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Percentage of the sounds squirrels were heard uttering.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock%}
