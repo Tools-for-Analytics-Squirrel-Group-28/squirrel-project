@@ -19,13 +19,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-
-
-SECRET_KEY = '%z^@yl_ctdf%7j5ubba#vb+s2_n^x+$&+!@eybzxshiubvyi31'
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = (os.environ.get('DEBUG') or '').strip().lower() in ('1', 'true')
 
-DEBUG = True
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -39,7 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sightings'
+    'sightings',
+    # 'sightings.apps.SightingsConfig',
+    # 'map.apps.MapConfig',
+    #'leaflet',
 ]
 
 MIDDLEWARE = [
@@ -76,12 +79,42 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if os.environ.get('GAE_APPLICATION'):
+    # If the host is not 127.0.0.1, assume we are running in GAE.
+    host = os.environ.get('PGHOST')
+    if host == '127.0.0.1':
+        host = os.environ.get('PGHOST')
+        port = os.environ.get('PGPORT')
+        database = os.environ.get('PGDATABASE')
+        username = os.environ.get('PGUSERNAME')
+        password = os.environ.get('PGPASSWORD')
+    else:
+        host = '/cloudsql/' + os.environ.get('INSTANCE_CONNECTION_NAME')
+        port = None
+        database = os.environ.get('PGDATABASE')
+        username = os.environ.get('PGUSERNAME')
+        password = os.environ.get('PGPASSWORD')
+
+    # Connect to GCP CloudSQL
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': database,
+            'USER': username,
+            'PASSWORD': password,
+            'HOST': host,
+            'PORT': port,
+        }
     }
-}
+
+else:
+    # Fall back to sqlite
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
@@ -120,7 +153,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = 'media'
+MEDIA_URL = '/media/'
 
-DATA_UPLOAD_MAX_NUMBER_FIELDS = 2000
+if os.environ.get('GAE_APPLICATION'):
+    GS_DEFAULT_ACL = 'publicRead'
+    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    GS_BUCKET_NAME = os.environ.get('GS_BUCKET_NAME')
+    MEDIA_URL = f'https://storage.cloud.google.com/{GS_BUCKET_NAME}/'
+    STATIC_URL = f'https://storage.cloud.google.com/{GS_BUCKET_NAME}/'
+
+
