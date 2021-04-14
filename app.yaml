@@ -1,0 +1,21 @@
+
+runtime: python37
+
+handlers:
+    # This configures Google App Engine to serve the files in the app's
+    # static directory.
+     - url: /static
+       static_dir: static
+
+     - url: /.*
+       script: auto
+
+env_variables:
+    DEBUG: 'false'
+    INSTANCE_CONNECTION_NAME: 'tools-for-analytics-307813:asia-northeast1:squirrel'  # eg. 'ieor-tools-for-analytics:asia-east1:adopt'
+    PGDATABASE: 'postgres'
+    PGUSER: 'postgres'
+    PGPASSWORD: '36o0AdrfNj0o4E7m'
+    SECRET_KEY: '%z^@yl_ctdf%7j5ubba#vb+s2_n^x+$&+!@eybzxshiubvyi31'
+    GS_BUCKET_NAME: 'tools-for-analytics-307813.appspot.com'  # eg. 'ieor-tools-for-analytics.appspot.com'
+    GOOGLE_APPLICATION_CREDENTIALS: 'service-account-key.json'  # eg. 'service-account-key.json'
