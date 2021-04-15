@@ -21,7 +21,7 @@ View statistics drawn from the dataset to study squirrel behavior.
     
 ### Where to get it
 
-A link to the server: https://<your project id>.appspot.com/
+A link to the server: https://tools-for-analytics-308206.df.r.appspot.com/sightings
 
 ### Contributors
 - Project Group 28
