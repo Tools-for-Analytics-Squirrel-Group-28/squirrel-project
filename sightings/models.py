@@ -17,7 +17,7 @@ class Squirrel(models.Model):
     )
 
     Unique_Squirrel_ID = models.CharField(
-        help_text=_('Format: <Hectare ID>-<AM/PM>-<4-digit Date>-<Hectare Squirrel Number>.'),
+            help_text=_('Format Example: 37F-PM-1014-03'),
         max_length=200,
         unique=True,
         null=False,
@@ -29,12 +29,6 @@ class Squirrel(models.Model):
                 code='invalid_ID'
             ),
         ]
-    )
-
-    Hectare = models.CharField(
-        max_length=200,
-        unique=True,
-        null=False,
     )
 
     PM = 'PM'
