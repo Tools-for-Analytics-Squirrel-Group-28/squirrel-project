@@ -1,69 +1,18 @@
-<!DOCTYPE html>
+{% extends 'sightings/base.html' %}
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+{% load static %}
 
-    <title>Squirrel Tracker: Statistics</title>
+{% block title %} Statistics Overview {% endblock %}
 
-    <!-- Bootstrap core CSS -->
-    <link href="https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/4.3/examples/checkout/form-validation.css" rel="stylesheet">
-  </head>
-
-<<<<<<< HEAD
-  <body>
-    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Squirrel Tracker</a>
-    </nav>
-
-    <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'sightings:index' %}">
-                    <span data-feather="index"></span>
-                    All Sightings
-                    <span class="sr-only">(current)</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'sightings:add' %}">
-                  <span data-feather="file"></span>
-                  Add a New Sighting
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/map/">
-                  <span data-feather="shopping-cart"></span>
-                  Map
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'sightings:stats' %}">
-                  <span data-feather="users"></span>
-                  Statistics
-                </a>
-              </li>
-=======
-  <body class="bg-light">
-    <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-      <img class="d-block mx-auto mb-4" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2699232169,2551735498&fm=26&gp=0.jpg" alt="" width="72" height="72">
-      <h1 class="display-4">Statistics Overview</h1>
-      <p class="lead">Below are the general statistics about the squirrel sightings.</p>
-    </div>
-
+{% block body %}
+  <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <img class="d-block mx-auto mb-4" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2699232169,2551735498&fm=26&gp=0.jpg" alt="" width="72" height="72">
+    <h1 class="display-4">Statistics Overview</h1>
+    <p class="lead">Below are the general statistics about the squirrel sightings.</p>
+    
+  </div>
     <div class="container">
       <div class="card-deck mb-3 text-center">
-
         <div class="card mb-4 box-shadow">
           <div class="card-header">
             <h4 class="my-0 font-weight-normal">Total</h4>
@@ -100,8 +49,6 @@ as registered.</li>
             </ul>
           </div>
         </div>
-
-
       </div>
     </div>
 
@@ -128,7 +75,6 @@ as registered.</li>
             <h1 class="card-title pricing-card-title">{{ predict_runs_from_acc }}</h1>
             <ul class="list-unstyled mt-3 mb-4">
               <li>Percentage of squirrels that runs away from human among all squirrels seen flagging their tails.</li>
->>>>>>> 00a151c715a3041e90b9707d233eac5e8d91fb75
             </ul>
           </div>
         </div>
@@ -138,24 +84,12 @@ as registered.</li>
             <h4 class="my-0 font-weight-normal">Vocal Communication (Kuks/Quaas/Moans)</h4>
           </div>
           <div class="card-body">
-            <h1 class="card-title pricing-card-title"> {{ Kuks }}/{{ Quaas }}/{{ Moans }}</h1>
+            <h1 class="card-title pricing-card-title"> {{ Kuks }} {{ Quaas }} {{ Moans }}</h1>
             <ul class="list-unstyled mt-3 mb-4">
               <li>Percentage of the sounds squirrels were heard uttering.</li>
             </ul>
           </div>
         </div>
-
-
       </div>
     </div>
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../../../dist/js/bootstrap.min.js"></script>
-    <script src="../../../../assets/js/vendor/holder.min.js"></script>
-  </body>
-</html>
+{% endblock%}

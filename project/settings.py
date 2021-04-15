@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 #BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,9 +19,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = (os.environ.get('DEBUG') or '').strip().lower() in ('1', 'true')
+
+
 
 DEBUG = (os.environ.get('DEBUG') or '').strip().lower() in ('1', 'true')
 
@@ -36,7 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sightings'
+    'sightings',
+    # 'sightings.apps.SightingsConfig',
+    # 'map.apps.MapConfig',
+    #'leaflet',
 ]
 
 MIDDLEWARE = [
@@ -160,4 +169,6 @@ if os.environ.get('GAE_APPLICATION'):
     MEDIA_URL = f'https://storage.cloud.google.com/{GS_BUCKET_NAME}/'
     STATIC_URL = f'https://storage.cloud.google.com/{GS_BUCKET_NAME}/'
 
+
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 3500
+
