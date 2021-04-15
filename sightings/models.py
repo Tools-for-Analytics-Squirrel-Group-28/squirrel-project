@@ -31,12 +31,6 @@ class Squirrel(models.Model):
         ]
     )
 
-    Hectare = models.CharField(
-        max_length=200,
-        unique=True,
-        null=False,
-    )
-
     PM = 'PM'
     AM = 'AM'
     SHIFT_CHOICES = [(PM, 'PM'), (AM, 'AM')]

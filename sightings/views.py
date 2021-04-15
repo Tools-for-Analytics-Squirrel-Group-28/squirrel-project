@@ -121,3 +121,4 @@ def stats(request):
     }
 
     return render(request, 'sightings/stats.html', context)
+
