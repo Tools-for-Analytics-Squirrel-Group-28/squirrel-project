@@ -53,42 +53,60 @@ def stats(request):
 
     squirrels = Squirrel.objects.all()
     total_count = squirrels.count()
-
+    
     # adult rate
     juvenile_count = squirrels.filter(Age='Juvenile').count()
     adult_count = squirrels.filter(Age='Adult').count()
-    adult_rate = adult_count / (adult_count + juvenile_count)
-    adult_rate = "{:.2%}".format(adult_rate)
+    if adult_count + juvenile_count !=0:
+        adult_rate = adult_count / (adult_count + juvenile_count)
+        adult_rate = "{:.2%}".format(adult_rate)
+    else:
+        adult_rate=0
 
     # friendliness
     approaches_count = squirrels.filter(Approaches=True).count()
     indifferent_count = squirrels.filter(Indifferent=True).count()
     runs_from_count = squirrels.filter(Runs_From=True).count()
-    friendliness = approaches_count / (approaches_count + indifferent_count + runs_from_count)
-    friendliness = "{:.2%}".format(friendliness)
+    if approaches_count + indifferent_count + runs_from_count !=0:
+        friendliness = approaches_count / (approaches_count + indifferent_count + runs_from_count)
+        friendliness = "{:.2%}".format(friendliness)
+    else:
+        friendliness=0
+
 
     # runs from prediction based on tail motions
     predict_runs_from_true = squirrels.filter(Tail_Flags=True, Runs_From=True).count()  # confusing rivals or predators
     predict_runs_from_false = squirrels.filter(Tail_Flags=True, Runs_From=False).count()
-    predict_runs_from_acc = predict_runs_from_true / (predict_runs_from_true + predict_runs_from_false)
-    predict_runs_from_acc = "{:.2%}".format(predict_runs_from_acc)
+    if predict_runs_from_true + predict_runs_from_false !=0:
+        predict_runs_from_acc = predict_runs_from_true / (predict_runs_from_true + predict_runs_from_false)
+        predict_runs_from_acc = "{:.2%}".format(predict_runs_from_acc)
+    else:
+        predict_runs_from_acc = 0
 
     # approaches prediction based on tail motions
     predict_approaches_true = squirrels.filter(Tail_Twitches=True, Approaches=True).count()  # communicate interest, curiosity
     predict_approaches_false = squirrels.filter(Tail_Twitches=True, Approaches=False).count()
-    predict_approaches_acc = predict_approaches_true / (predict_approaches_true + predict_approaches_false)
-    predict_approaches_acc = "{:.2%}".format(predict_approaches_acc)
+    if predict_approaches_true + predict_approaches_false != 0:
+        predict_approaches_acc = predict_approaches_true / (predict_approaches_true + predict_approaches_false)
+        predict_approaches_acc = "{:.2%}".format(predict_approaches_acc)
+    else:
+        predict_approaches_acc = 0
 
     # vocal communication
     kuks_count = squirrels.filter(Kuks=True).count()
     quaas_count = squirrels.filter(Quaas=True).count()
     moans_count = squirrels.filter(Moans=True).count()
-    kuks_rate = kuks_count / (kuks_count + quaas_count + moans_count)
-    kuks_rate = "{:.2%}".format(kuks_rate)
-    quaas_rate = quaas_count / (kuks_count + quaas_count + moans_count)
-    quaas_rate = "{:.2%}".format(quaas_rate)
-    moans_rate = moans_count / (kuks_count + quaas_count + moans_count)
-    moans_rate = "{:.2%}".format(moans_rate)
+    if kuks_count + quaas_count + moans_count != 0:
+        kuks_rate = kuks_count / (kuks_count + quaas_count + moans_count)
+        kuks_rate = "{:.2%}".format(kuks_rate)
+        quaas_rate = quaas_count / (kuks_count + quaas_count + moans_count)
+        quaas_rate = "{:.2%}".format(quaas_rate)
+        moans_rate = moans_count / (kuks_count + quaas_count + moans_count)
+        moans_rate = "{:.2%}".format(moans_rate)
+    else:
+        kuks_rate = 0
+        quaas_rate = 0
+        moans_rate = 0
 
     context = {
         'total_count': total_count,
