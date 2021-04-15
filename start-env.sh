@@ -1,4 +1,3 @@
-  
 #!/bin/bash
 
 unset INSTANCE_CONNECTION_NAME

@@ -9,13 +9,13 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
+#BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -27,6 +27,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = (os.environ.get('DEBUG') or '').strip().lower() in ('1', 'true')
 
 
+
+DEBUG = (os.environ.get('DEBUG') or '').strip().lower() in ('1', 'true')
 
 ALLOWED_HOSTS = ['*']
 
@@ -153,7 +155,6 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
 
@@ -168,4 +169,6 @@ if os.environ.get('GAE_APPLICATION'):
     MEDIA_URL = f'https://storage.cloud.google.com/{GS_BUCKET_NAME}/'
     STATIC_URL = f'https://storage.cloud.google.com/{GS_BUCKET_NAME}/'
 
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 3500
 
