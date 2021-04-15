@@ -24,7 +24,7 @@ View statistics drawn from the dataset to study squirrel behavior.
 A link to the server: https://tools-for-analytics-308206.df.r.appspot.com/
 
 ### Contributors
-- Project Group 28
+- Project Group 28, Section 1
 - UNIs: [yw3581, yh3308]
 
 
