@@ -8,3 +8,13 @@ handlers:
 
      - url: /.*
        script: auto
+
+env_variables:
+    DEBUG: 'true'
+    INSTANCE_CONNECTION_NAME: 'tools-for-analytics-308206:us-east4:squirrel1'  # eg. 'ieor-tools-for-analytics:asia-east1:adopt'
+    PGDATABASE: 'postgres'
+    PGUSER: 'postgres'
+    PGPASSWORD: 'IbLwAqk18gs9P2c3'
+    SECRET_KEY: '%z^@yl_ctdf%7j5ubba#vb+s2_n^x+$&+!@eybzxshiubvyi31'
+    GS_BUCKET_NAME: 'tools-for-analytics-308206.df.r.appspot.com'  # eg. 'ieor-tools-for-analytics.appspot.com'
+    GOOGLE_APPLICATION_CREDENTIALS: 'service-account-key.json'  # eg. 'service-account-key.json'
