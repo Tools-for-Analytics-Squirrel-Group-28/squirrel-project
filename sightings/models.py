@@ -17,7 +17,7 @@ class Squirrel(models.Model):
     )
 
     Unique_Squirrel_ID = models.CharField(
-            help_text=_('Format Example: 37F-PM-1014-03'),
+        help_text=_('Example:"37F-PM-1014-03"'),
         max_length=200,
         unique=True,
         null=False,
